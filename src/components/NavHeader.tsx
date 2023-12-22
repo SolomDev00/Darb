@@ -1,6 +1,6 @@
 const NavHeader = () => {
   return (
-    <header className="w-full text-center p-6">
+    <header className="w-full text-center p-6 bg-[#2f1761]">
       <div>
         <h3 className="text-white">
           استمر بالتعلم علي منصة دَرب دوت نت من اي مكان{" "}

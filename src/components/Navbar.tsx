@@ -11,25 +11,28 @@ const Navbar = () => {
     <>
       <NavHeader />
       <nav className="w-full bg-white flex flex-row p-6 items-center">
-        <div>
+        <div className="cursor-pointer">
           <img className="w-60" src={Logo} alt="Darb Logo" />
         </div>
-        <div className="h-10 border-r-2 px-6">
+        <div className="h-10 border-r-2 px-4">
           <div className="flex flex-row items-center gap-2">
             <ListBulletIcon className="w-8 h-8 cursor-pointer" />
             <h3 className="text-[#3E1F7A] text-lg cursor-pointer">الفئة</h3>
             <div className="flex flex-row items-center gap-2 px-3">
-              <Input placeholder="بحث ..." />
+              <Input placeholder="بحث ..."></Input>
               <MagnifyingGlassIcon className="w-8 h-8 cursor-pointer text-[#3E1F7A]" />
             </div>
           </div>
         </div>
-        <div className="flex flex-row items-center gap-2 text-[#3E1F7A] border-l-2 pl-6">
+        <div className="flex flex-row items-center gap-2 text-[#3E1F7A] border-l-2 pl-4">
           <Select />
           <Link to={"/contact"}>تواصل معنا</Link>
         </div>
-        <div className="flex flex-row items-center gap-2">
-          <Button>تسجيل الدخول</Button>
+        <div className="flex flex-row items-center gap-2 px-4">
+          <Button className="text-base" variant={"noneborder"}>
+            تسجيل الدخول
+          </Button>
+          <Button className="text-base">إنشاء حساب جديد</Button>
         </div>
       </nav>
     </>
