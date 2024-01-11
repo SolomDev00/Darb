@@ -4,16 +4,15 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import HomePage from "../views";
-import LoginPage from "../views/Auth/Login";
-import ProtectedRoute from "../views/Auth/ProtectedRoute";
+import LoginPage from "../views/auth/Login";
+import ProtectedRoute from "../views/auth/ProtectedRoute";
 import ErrorHandler from "../components/errors/ErrorRouteHandler";
 import PageNotFound from "../views/PageNotFound";
 import RootLayout from "../views/Layout";
-
-const isLoggedIn = true;
-const userData: { email: string } | null = isLoggedIn
-  ? { email: "email@gmail.com" }
-  : null;
+import RegisterPage from "../views/auth/Register";
+import ResetPasswordPage from "../views/auth/ResetPassword";
+import ProfilePage from "../views/settings/Profile";
+import CoursesPage from "../views/website/Courses";
 
 const routers = createBrowserRouter(
   createRoutesFromElements(
@@ -24,12 +23,40 @@ const routers = createBrowserRouter(
         <Route
           path="login"
           element={
-            <ProtectedRoute
-              isAllowed={!isLoggedIn}
-              redircetPath="/contribute"
-              data={userData}
-            >
+            <ProtectedRoute isAllowed redircetPath="/">
               <LoginPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="register"
+          element={
+            <ProtectedRoute isAllowed redircetPath="/">
+              <RegisterPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="resetpassword"
+          element={
+            <ProtectedRoute isAllowed redircetPath="/">
+              <ResetPasswordPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="profile"
+          element={
+            <ProtectedRoute isAllowed redircetPath="/">
+              <ProfilePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="courses"
+          element={
+            <ProtectedRoute isAllowed redircetPath="/">
+              <CoursesPage />
             </ProtectedRoute>
           }
         />

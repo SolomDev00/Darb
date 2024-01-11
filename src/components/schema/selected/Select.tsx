@@ -8,7 +8,7 @@ const Select = () => {
     <div>
       <Menu as="div" className="relative inline-block text-right">
         <div>
-          <Menu.Button className="inline-flex w-full justify-center rounded-md bg-transparent px-4 py-2 text-base font-medium text-[#3E1F7A] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
+          <Menu.Button className="inline-flex w-full justify-center rounded-md bg-transparent px-4 py-2 text-base text-[#3E1F7A] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
             طريقة الإستخدام
             <ChevronDownIcon
               className="mr-1 ml-2 h-5 w-4 text-[#3E1F7A] hover:text-violet-100"
@@ -31,7 +31,7 @@ const Select = () => {
                 {({ active }) => (
                   <button
                     className={`${
-                      active ? "bg-indigo-600 text-white" : "text-gray-900"
+                      active ? "bg-indigo-600 text-white" : "text-[#3E1F7A]"
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm duration-300`}
                   >
                     {active ? (
@@ -46,6 +46,50 @@ const Select = () => {
                       />
                     )}
                     شرح فيديوهات
+                  </button>
+                )}
+              </Menu.Item>
+              <Menu.Item>
+                {({ active }) => (
+                  <button
+                    className={`${
+                      active ? "bg-indigo-600 text-white" : "text-[#3E1F7A]"
+                    } group flex w-full items-center rounded-md px-2 py-2 text-sm duration-300`}
+                  >
+                    {active ? (
+                      <TableCellsIcon
+                        className="ml-2 h-5 w-5"
+                        aria-hidden="true"
+                      />
+                    ) : (
+                      <TableCellsIcon
+                        className="ml-2 h-5 w-5"
+                        aria-hidden="true"
+                      />
+                    )}
+                    رفع فيديوهاتي ك مدرس{" "}
+                  </button>
+                )}
+              </Menu.Item>
+              <Menu.Item>
+                {({ active }) => (
+                  <button
+                    className={`${
+                      active ? "bg-indigo-600 text-white" : "text-[#3E1F7A]"
+                    } group flex w-full items-center rounded-md px-2 py-2 text-sm duration-300`}
+                  >
+                    {active ? (
+                      <TableCellsIcon
+                        className="ml-2 h-5 w-5"
+                        aria-hidden="true"
+                      />
+                    ) : (
+                      <TableCellsIcon
+                        className="ml-2 h-5 w-5"
+                        aria-hidden="true"
+                      />
+                    )}
+                    كيفية التسجيل علي المنصة{" "}
                   </button>
                 )}
               </Menu.Item>

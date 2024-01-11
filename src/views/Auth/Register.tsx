@@ -1,69 +1,55 @@
-import { useState } from "react";
+import InputErrorMessage from "../../components/InputErrorMessage";
 import Button from "../../components/schema/Button";
 import Input from "../../components/schema/Input";
-import { LOGIN_FORM } from "../../data";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { REGISTER_FORM } from "../../data";
 import { yupResolver } from "@hookform/resolvers/yup";
-import InputErrorMessage from "../../components/InputErrorMessage";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { loginSchema } from "../../validation";
+import { registerSchema } from "../../validation";
 import axiosInstance from "../../config/axios.config";
 import toast from "react-hot-toast";
+import { useState } from "react";
 import { AxiosError } from "axios";
 import { IErrorResponse } from "../../interface";
-import Cookies from "universal-cookie";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../app/store";
-import { setToken } from "../../app/token/token";
 
 interface IFormInput {
-  identifier: string;
+  username: string;
+  email: string;
   password: string;
 }
 
-const LoginPage = () => {
+const RegisterPage = () => {
   const [isLoading, setIsLoading] = useState(false);
-
-  // ** Nav
   const nav = useNavigate();
-
-  // ** Cookies
-  const cookie = new Cookies();
-  const dispatch = useAppDispatch();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<IFormInput>({
-    resolver: yupResolver(loginSchema),
+    resolver: yupResolver(registerSchema),
   });
 
-  // ** Handlers
+  // Handlers
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     setIsLoading(true);
     try {
-      const { status, data: resData } = await axiosInstance.post(
-        "/auth/local",
-        data
-      );
-      console.log(resData);
+      const { status } = await axiosInstance.post("/auth/local/register", data);
       if (status === 200) {
-        toast.success("Login is done, you will navigate after 2 seconds!", {
+        toast.success("Register is done, you will navigate after 2 seconds!", {
           position: "bottom-center",
           duration: 4000,
         });
-        dispatch(setToken(resData));
-        cookie.set("userLogged", resData);
         setTimeout(() => {
-          nav("/");
-        }, 2000);
+          nav("/login");
+        }, 1500);
       }
     } catch (error) {
       const errorObj = error as AxiosError<IErrorResponse>;
       const message = errorObj.response?.data.error.message;
       toast.error(`${message}`, {
         position: "bottom-center",
-        duration: 1500,
+        duration: 4000,
       });
     } finally {
       setIsLoading(false);
@@ -71,7 +57,7 @@ const LoginPage = () => {
   };
 
   // ** Renders
-  const renderLoginForm = LOGIN_FORM.map(
+  const renderRegisterForm = REGISTER_FORM.map(
     ({ name, placeholder, type, forl, placel, validation }, idx) => (
       <div key={idx}>
         <div className="space-y-2 pb-1">
@@ -93,13 +79,13 @@ const LoginPage = () => {
   return (
     <section className="w-[800px] mt-24 mx-auto">
       <h2 className="text-[#3E1F7A] text-2xl pb-6">
-        سجل الدخول الي المنصة الان!
+        سجل الدخول بحساب جديد الي المنصة!
       </h2>
       <form
         className="w-[800px] space-y-3 mx-auto"
         onSubmit={handleSubmit(onSubmit)}
       >
-        {renderLoginForm}
+        {renderRegisterForm}
         <div className="flex flex-row gap-2 cursor-pointer">
           <input id="verify" type="checkbox" required />
           <label htmlFor="verify" className="text-sm text-[#442288]">
@@ -108,15 +94,12 @@ const LoginPage = () => {
           </label>
         </div>
         <Button fullWidth isLoading={isLoading}>
-          تسجيل الدخول
+          سجُل بحساب جديد
         </Button>
         <div className="flex flex-col space-y-2">
-          <NavLink to={"/resetpassword"} className="text-[#442288]">
-            هل نسيت كلمة المرور ؟
-          </NavLink>
-          <NavLink to={"/register"} className="text-[#442288]">
-            لا تمتلك حساب علي المنصة ؟{" "}
-            <span className="underline">سجل من هنا</span>
+          <NavLink to={"/login"} className="text-[#442288]">
+            هل لديك حساب علي المنصة ؟{" "}
+            <span className="underline">تسجيل الدخول</span>
           </NavLink>
         </div>
       </form>
@@ -124,4 +107,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
