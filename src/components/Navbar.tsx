@@ -3,16 +3,30 @@ import Logo from "../assets/logo_dark.png";
 import NavHeader from "./NavHeader";
 import Input from "./schema/Input";
 import Select from "./schema/selected/Select";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import Button from "./schema/Button";
 import SelectCate from "./schema/selected/SelectCate";
+import { useSelector } from "react-redux";
+import { tokenSelector } from "../app/token/token";
+import Cookies from "universal-cookie";
+import {
+  ArrowLeftEndOnRectangleIcon,
+  UserCircleIcon,
+} from "@heroicons/react/24/outline";
 
 const Navbar = () => {
   // ** Nav
   const nav = useNavigate();
 
-  // ** True
-  const userLogged = true;
+  // ** Cookies
+  const cookie = new Cookies();
+
+  // ** UserLogged
+  const userLogged = cookie.get("userLogged");
+
+  // ** Get User
+  const { token } = useSelector(tokenSelector);
+  console.log(token);
 
   return (
     <>
@@ -56,8 +70,24 @@ const Navbar = () => {
             </Button>
           </div>
         ) : (
-          <div>
-            <h2>Welcome, Eslam Wael</h2>
+          <div className="flex flex-row items-start gap-6 md:px-4">
+            <NavLink to={"/profile"}>
+              <h2 className="flex flex-row items-center justify-between gap-2 text-indigo-800">
+                <UserCircleIcon width={"30px"} /> {token?.user.username}
+              </h2>
+            </NavLink>
+            <div className="cursor-pointer">
+              <ArrowLeftEndOnRectangleIcon
+                width={"30px"}
+                className="text-red-600"
+                onClick={() => {
+                  cookie.remove("userLogged");
+                  setTimeout(() => {
+                    nav("/login");
+                  }, 300);
+                }}
+              />
+            </div>
           </div>
         )}
       </nav>

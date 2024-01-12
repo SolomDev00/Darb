@@ -1,13 +1,15 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IToken } from "../../interface";
 import { RootState } from "../store";
+import Cookies from "universal-cookie";
 
 interface TokenState {
   token: IToken | null;
 }
 
+const cookie = new Cookies();
 const initialState: TokenState = {
-  token: null,
+  token: cookie.get("userLogged"),
 };
 
 const tokenSlice = createSlice({

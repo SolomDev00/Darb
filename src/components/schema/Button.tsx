@@ -3,7 +3,7 @@ import { HTMLAttributes, ReactNode } from "react";
 import { VariantProps, cva } from "class-variance-authority";
 
 const buttonVariants = cva(
-  "flex items-center justify-center rounded-md font-base text-white duration-500 dark:text-black disabled:bg-indigo-400 disabled:hover:bg-indigo-400 disabled:cursor-not-allowed",
+  "flex gap-2 items-center justify-center rounded-md font-base text-white duration-500 dark:text-black disabled:bg-indigo-400 disabled:hover:bg-indigo-400 disabled:cursor-not-allowed",
   {
     variants: {
       variant: {
