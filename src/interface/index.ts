@@ -50,4 +50,7 @@ export interface IPrimeData {
 
 export interface IToken {
   jwt: string;
+  user: {
+    username: string;
+  };
 }
