@@ -4,13 +4,13 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import HomePage from "../views";
-import LoginPage from "../views/auth/Login";
-import ProtectedRoute from "../views/auth/ProtectedRoute";
+import LoginPage from "../views/Auth/Login";
+import ProtectedRoute from "../views/Auth/ProtectedRoute";
 import ErrorHandler from "../components/errors/ErrorRouteHandler";
 import PageNotFound from "../views/PageNotFound";
 import RootLayout from "../views/Layout";
-import RegisterPage from "../views/auth/Register";
-import ResetPasswordPage from "../views/auth/ResetPassword";
+import RegisterPage from "../views/Auth/Register";
+import ResetPasswordPage from "../views/Auth/ResetPassword";
 import ProfilePage from "../views/settings/Profile";
 import CoursesPage from "../views/website/Courses";
 
