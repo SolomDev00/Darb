@@ -13,6 +13,7 @@ import RegisterPage from "../views/Auth/Register";
 import ResetPasswordPage from "../views/Auth/ResetPassword";
 import ProfilePage from "../views/settings/Profile";
 import CoursesPage from "../views/website/Courses";
+import PlayVideo from "../views/website/renders/PlayVideo";
 
 const routers = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +21,7 @@ const routers = createBrowserRouter(
       {/* Root Layout */}
       <Route path="/" element={<RootLayout />} errorElement={<ErrorHandler />}>
         <Route index element={<HomePage />} />
+        <Route path="tester" element={<PlayVideo />} />
         <Route
           path="login"
           element={
