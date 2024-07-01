@@ -1,6 +1,6 @@
 import {
   Route,
-  createBrowserRouter,
+  createHashRouter,
   createRoutesFromElements,
 } from "react-router-dom";
 import HomePage from "../views";
@@ -15,7 +15,7 @@ import ProfilePage from "../views/settings/Profile";
 import CoursesPage from "../views/website/Courses";
 import PlayVideo from "../views/website/renders/PlayVideo";
 
-const routers = createBrowserRouter(
+const routers = createHashRouter(
   createRoutesFromElements(
     <>
       {/* Root Layout */}
